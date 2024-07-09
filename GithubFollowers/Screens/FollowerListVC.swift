@@ -50,8 +50,10 @@ class FollowerListVC: UIViewController {
     
     // MARK: - Actions
     func getFollowers(username: String, page: Int) {
+        showLoadingView()
         NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return } // Unowned just does unwraping the optional.
+            self.dismissLoadingView()
             switch result{
             case.success(let followers):
                 if followers.count < 100 { self.hasMoreFollowers = false }
