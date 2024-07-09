@@ -18,12 +18,14 @@ class FollowerListVC: UIViewController {
     var collectionView : UICollectionView!
     var dataSource : UICollectionViewDiffableDataSource<Section,Follower>!
     var followers : [Follower] = []
+    var page = 1
+    var hasMoreFollowers = true
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         configureViewController ()
-        getFollowers()
+        getFollowers(username: username, page: page)
         configureDataSource()
     }
     
@@ -35,6 +37,7 @@ class FollowerListVC: UIViewController {
     // MARK: - Configure UI
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumFlowLayout(in: view))
+        collectionView.delegate = self
         view.addSubview(collectionView)
         collectionView.backgroundColor = .systemBackground
         collectionView.register(FollowerCell.self, forCellWithReuseIdentifier: FollowerCell.reuseID)
@@ -46,12 +49,13 @@ class FollowerListVC: UIViewController {
     }
     
     // MARK: - Actions
-    func getFollowers() {
-        NetworkManager.shared.getFollowers(for: username, page: 1) { [weak self] result in
+    func getFollowers(username: String, page: Int) {
+        NetworkManager.shared.getFollowers(for: username, page: page) { [weak self] result in
             guard let self = self else { return } // Unowned just does unwraping the optional.
             switch result{
             case.success(let followers):
-                self.followers = followers
+                if followers.count < 100 { self.hasMoreFollowers = false }
+                self.followers.append(contentsOf: followers)
                 self.updateData() // Closure happens in the background thread..!
             case.failure(let err):
                 self.presentGFALertOnMainThread(title: "Error..!", message: err.rawValue, buttonTitle: "Not okay..")
@@ -74,6 +78,20 @@ class FollowerListVC: UIViewController {
         snapshot.appendItems(followers)
         DispatchQueue.main.async { // Let's safely update it in Main Thread
             self.dataSource.apply(snapshot, animatingDifferences: true)
+        }
+    }
+}
+
+extension FollowerListVC : UICollectionViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y // How far away from the top scroll ?
+        let contentHeight = scrollView.contentSize.height // The Long~~ content size of all contents in the scroll
+        let height = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - height {
+            guard hasMoreFollowers else { return }
+            page+=1
+            getFollowers(username: username, page: page)
         }
     }
 }
