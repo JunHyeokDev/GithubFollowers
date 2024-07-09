@@ -58,6 +58,12 @@ class FollowerListVC: UIViewController {
             case.success(let followers):
                 if followers.count < 100 { self.hasMoreFollowers = false }
                 self.followers.append(contentsOf: followers)
+                if self.followers.isEmpty {
+                    let message = "This user doesn't have any followers, Go follow !"
+                    DispatchQueue.main.async {
+                        self.showEmptyStateView(with: message, in: self.view)
+                    }
+                }
                 self.updateData() // Closure happens in the background thread..!
             case.failure(let err):
                 self.presentGFALertOnMainThread(title: "Error..!", message: err.rawValue, buttonTitle: "Not okay..")
