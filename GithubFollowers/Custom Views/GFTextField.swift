@@ -8,6 +8,8 @@
 import UIKit
 
 class GFTextField: UITextField {
+    
+    // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -16,7 +18,7 @@ class GFTextField: UITextField {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: - UI Configure
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
@@ -33,9 +35,12 @@ class GFTextField: UITextField {
         
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
-        
+        returnKeyType = .go
         placeholder = "누구를 검색할까요???"
     }
-    
+}
 
+
+extension SearchVC : UITextFieldDelegate {
+    
 }
