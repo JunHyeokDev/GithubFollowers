@@ -7,6 +7,11 @@
 
 import UIKit
 
+// MARK: - Protocol
+protocol FollowerListVCDelegate: AnyObject {
+    func didRequestFollowers(for username : String)
+}
+
 class FollowerListVC: UIViewController {
     
     enum Section { // enum is hashable by default
@@ -104,6 +109,7 @@ class FollowerListVC: UIViewController {
 
 extension FollowerListVC : UICollectionViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("Dragging")
         let offsetY = scrollView.contentOffset.y // How far away from the top scroll ?
         let contentHeight = scrollView.contentSize.height // The Long~~ content size of all contents in the scroll
         let height = scrollView.frame.size.height
@@ -121,7 +127,7 @@ extension FollowerListVC : UICollectionViewDelegate {
         let destVC = UserInfoVC()
         
         destVC.username = follower.login
-        
+        destVC.delegate = self
         let navVC = UINavigationController(rootViewController: destVC)
         present(navVC, animated: true)
         
@@ -143,3 +149,14 @@ extension FollowerListVC : UISearchResultsUpdating, UISearchBarDelegate {
 }
 
 
+extension FollowerListVC : FollowerListVCDelegate {
+    func didRequestFollowers(for username: String) {
+        self.username = username
+        title = username
+        page = 1
+        followers.removeAll()
+        filteredFollowers.removeAll()
+        collectionView.setContentOffset(.zero, animated: true) // reset the scroll..!
+        getFollowers(username: username, page: page)
+    }
+}

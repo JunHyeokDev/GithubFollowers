@@ -10,7 +10,7 @@ import UIKit
 class NetworkManager {
     static let shared = NetworkManager()
     private let _baseURL = "https://api.github.com"
-    private let _followersPerPage = "20"
+    private let _followersPerPage = "100"
     
     let cache = NSCache<NSString, UIImage>()
     
@@ -77,6 +77,7 @@ class NetworkManager {
                 let user = try decoder.decode(User.self, from: data) // [Follower].self ??
                 completed(.success(user)) // Good to go
             } catch {
+//                completed(nil,error.localizedDescription) // It's good for debug, but not for user!
                 completed(.failure(.invalidData))
             }
         }
