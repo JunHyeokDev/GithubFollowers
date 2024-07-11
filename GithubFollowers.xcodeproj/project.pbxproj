@@ -38,6 +38,7 @@
 		BFFD174C2C3D9A9E002E5426 /* GFFollowerItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFD174B2C3D9A9E002E5426 /* GFFollowerItemVC.swift */; };
 		BFFD174F2C3DA063002E5426 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFD174E2C3DA063002E5426 /* Date+Ext.swift */; };
 		BFFD17512C3DA082002E5426 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFD17502C3DA082002E5426 /* String+Ext.swift */; };
+		BFFD17532C3E6BE0002E5426 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFD17522C3E6BE0002E5426 /* PersistanceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		BFFD174B2C3D9A9E002E5426 /* GFFollowerItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFFollowerItemVC.swift; sourceTree = "<group>"; };
 		BFFD174E2C3DA063002E5426 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		BFFD17502C3DA082002E5426 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		BFFD17522C3E6BE0002E5426 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE2C1352C3CEB7500A41810 /* NetworkManager.swift */,
+				BFFD17522C3E6BE0002E5426 /* PersistanceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				BFFD174C2C3D9A9E002E5426 /* GFFollowerItemVC.swift in Sources */,
 				BFFD17462C3D8A97002E5426 /* GFItemInfoView.swift in Sources */,
 				BFE2C13C2C3CF95C00A41810 /* FollowerCell.swift in Sources */,
+				BFFD17532C3E6BE0002E5426 /* PersistanceManager.swift in Sources */,
 				BFE2C1392C3CF1D000A41810 /* ErrorMessage.swift in Sources */,
 				BFFD17402C3D64C6002E5426 /* GFUserInfoHeaderVC.swift in Sources */,
 				BFE2C1262C3CDA3A00A41810 /* GFBodyLabel.swift in Sources */,
