@@ -58,7 +58,7 @@ class FollowerListVC: UIViewController {
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         self.navigationItem.rightBarButtonItem = addButton
     }
-    
+    // MARK: - Actions
     @objc func addButtonTapped() {
         showLoadingView()
         
