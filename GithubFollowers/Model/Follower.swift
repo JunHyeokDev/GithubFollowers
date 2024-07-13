@@ -8,10 +8,13 @@
 import Foundation
 
 
-struct Follower : Codable {
+struct Follower : Codable, Hashable {
     var login: String
     var avatarUrl : String // avatar_url -> avatarUrl
     
-    
+//    Just for little bit Optimization!
+//    func hash(into hasher: inout Hasher) {
+//        hasher.combine(login)
+//    }
     
 }

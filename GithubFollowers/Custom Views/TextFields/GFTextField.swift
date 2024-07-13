@@ -36,6 +36,7 @@ class GFTextField: UITextField {
         backgroundColor = .tertiarySystemBackground
         autocorrectionType = .no
         returnKeyType = .go
+        clearButtonMode = .whileEditing
         placeholder = "누구를 검색할까요???"
     }
 }

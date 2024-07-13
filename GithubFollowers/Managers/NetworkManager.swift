@@ -5,32 +5,35 @@
 //  Created by Jun Hyeok Kim on 7/9/24.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     static let shared = NetworkManager()
-    let baseURL = "https://api.github.com"
-    let followersPerPage = "100"
+    private let _baseURL = "https://api.github.com"
+    private let _followersPerPage = "100"
+    
+    let cache = NSCache<NSString, UIImage>()
+    
     private init() {}
     
-    func getFollowers(for username:String, page: Int, completed: @escaping([Follower]?, String?) -> Void ) {
-        let endpoint = baseURL + "/users/\(username)/followers?per_page=\(followersPerPage)&page=\(page)"
+    func getFollowers(for username:String, page: Int, completed: @escaping(Result<[Follower],GFError>) -> Void ) {
+        let endpoint = _baseURL + "/users/\(username)/followers?per_page=\(_followersPerPage)&page=\(page)"
         
         guard let url = URL(string: endpoint) else {
-            completed(nil,"This username created an invalid request. Please try again")
+            completed(.failure(.invalidUsername))
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let _ = error { completed(nil, "Unable to complete your request. Please Check your internet connection") }
+            if let _ = error { completed(.failure(.unableToComplete)) }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(nil, "Invalid response from the server. Please try again.")
+                completed(.failure(.invalidReponse))
                 return
             }
             
             guard let data = data else {
-                completed(nil, "The data received from the server was invaild. Please try again.")
+                completed(.failure(.invalidData))
                 return
             }
             
@@ -38,9 +41,44 @@ class NetworkManager {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let followers = try decoder.decode([Follower].self, from: data) // [Follower].self ??
-                completed(followers,nil) // Good to go
+                completed(.success(followers)) // Good to go
             } catch {
-                completed(nil, "Invalid response from the server. Please try again.")
+//                completed(nil,error.localizedDescription) // It's good for debug, but not for user!
+                completed(.failure(.invalidData))
+            }
+        }
+        task.resume() // This is what really makes the netwroking job
+    }
+    
+    func getUserInfo(for username:String, completed: @escaping(Result<User,GFError>) -> Void ) {
+        let endpoint = _baseURL + "/users/\(username)"
+        
+        guard let url = URL(string: endpoint) else {
+            completed(.failure(.invalidUsername))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let _ = error { completed(.failure(.unableToComplete)) }
+            
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                completed(.failure(.invalidReponse))
+                return
+            }
+            
+            guard let data = data else {
+                completed(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let user = try decoder.decode(User.self, from: data) // [Follower].self ??
+                completed(.success(user)) // Good to go
+            } catch {
+//                completed(nil,error.localizedDescription) // It's good for debug, but not for user!
+                completed(.failure(.invalidData))
             }
         }
         task.resume() // This is what really makes the netwroking job

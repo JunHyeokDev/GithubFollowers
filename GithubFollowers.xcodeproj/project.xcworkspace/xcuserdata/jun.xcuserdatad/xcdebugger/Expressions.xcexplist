@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "one-time initialization function for isiPhoneSE1stGen:Constants.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "ScreenSize.maxLength">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
