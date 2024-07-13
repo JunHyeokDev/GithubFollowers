@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF2E319E2C424CA200278D2D /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2E319D2C424CA200278D2D /* FavoriteCell.swift */; };
 		BFE2C1062C3C099900A41810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE2C1052C3C099900A41810 /* AppDelegate.swift */; };
 		BFE2C1082C3C099900A41810 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE2C1072C3C099900A41810 /* SceneDelegate.swift */; };
 		BFE2C10F2C3C099A00A41810 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE2C10E2C3C099A00A41810 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF2E319D2C424CA200278D2D /* FavoriteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
 		BFE2C1022C3C099900A41810 /* GithubFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE2C1052C3C099900A41810 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFE2C1072C3C099900A41810 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE2C13B2C3CF95C00A41810 /* FollowerCell.swift */,
+				BF2E319D2C424CA200278D2D /* FavoriteCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				BFE2C1282C3CDAF900A41810 /* GFAlertVC.swift in Sources */,
 				BFFD174C2C3D9A9E002E5426 /* GFFollowerItemVC.swift in Sources */,
 				BFFD17462C3D8A97002E5426 /* GFItemInfoView.swift in Sources */,
+				BF2E319E2C424CA200278D2D /* FavoriteCell.swift in Sources */,
 				BFE2C13C2C3CF95C00A41810 /* FollowerCell.swift in Sources */,
 				BFFD17532C3E6BE0002E5426 /* PersistanceManager.swift in Sources */,
 				BFE2C1392C3CF1D000A41810 /* ErrorMessage.swift in Sources */,

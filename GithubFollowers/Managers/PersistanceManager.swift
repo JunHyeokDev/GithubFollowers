@@ -11,7 +11,7 @@ enum PersistanceActionType {
     case add, remove
 }
 
-enum PersistanceManager {
+class PersistanceManager {
     static private let defaults = UserDefaults.standard
     
     enum Keys {
