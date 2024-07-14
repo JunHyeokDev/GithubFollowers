@@ -32,6 +32,7 @@ class SearchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) // Everytime this SearchVC appears,
+        usernameTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
@@ -46,10 +47,8 @@ class SearchVC: UIViewController {
             presentGFALertOnMainThread(title: "Empty User Name!", message: "Please enter a username🥲", buttonTitle: "OK! 😁")
             return
         }
-        
-        let followerListVC = FollowerListVC();
-        followerListVC.username = usernameTextField.text
-        followerListVC.title = usernameTextField.text
+        usernameTextField.resignFirstResponder()
+        let followerListVC = FollowerListVC(username: usernameTextField.text ?? "");
         navigationController?.pushViewController(followerListVC, animated: true)
     }
     // MARK: - UI Configure
