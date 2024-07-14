@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - GFItemInfoVC
 class GFItemInfoVC: UIViewController {
     
     let stackView = UIStackView()
@@ -15,7 +16,6 @@ class GFItemInfoVC: UIViewController {
     let actionButton = GFButton()
     
     var user : User!
-    weak var delegate : UserInfoVCDelegate! // Potential(but almost certainly) Memory leak!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +55,7 @@ class GFItemInfoVC: UIViewController {
         stackView.addArrangedSubview(itemInfoViewTwo)
     }
     private func layoutUI() {
-        view.addSubview(stackView)
-        view.addSubview(actionButton)
+        view.addSubViews(stackView,actionButton)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         let padding : CGFloat = 20

@@ -10,7 +10,7 @@ import UIKit
 class GFAvatarImageView: UIImageView {
 
     // MARK: - Properties
-    let placeholderImage = UIImage(named: "avatar-placeholder")!
+    let placeholderImage = Images.placeholder
     let cache = NetworkManager.shared.cache
     // MARK: - Life Cycle
     override init(frame: CGRect) {

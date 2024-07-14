@@ -7,10 +7,9 @@
 
 import UIKit
 
-// MARK: - Protocol : UserInfoVCDelegate
-protocol UserInfoVCDelegate : AnyObject {
-    func didTapGithubProfile(for user : User)
-    func didTapGetFollowers(for user : User)
+// MARK: - Protocol
+protocol UserInfoVCVCDelegate: AnyObject {
+    func didRequestFollowers(for username : String)
 }
 
 // MARK: - UserInfoVC
@@ -23,7 +22,7 @@ class UserInfoVC: UIViewController {
     let dateLabel = GFBodyLabel(textAlignment: .center)
     
     var username : String!
-    weak var delegate : FollowerListVCDelegate!
+    weak var delegate : UserInfoVCVCDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,8 +111,9 @@ class UserInfoVC: UIViewController {
     }
 
 }
-// MARK: - Extension
-extension UserInfoVC : UserInfoVCDelegate {
+
+
+extension UserInfoVC : GFRepoItemVCDelegate {
     func didTapGithubProfile(for user: User) {
         // Show Safari VC
         guard let url = URL(string: user.htmlUrl) else {
@@ -123,6 +123,8 @@ extension UserInfoVC : UserInfoVCDelegate {
         presentSafariVC(with: url)
     }
     
+}
+extension UserInfoVC : GFFollowerItemVCDelegate {
     func didTapGetFollowers(for user : User) {
         // dismiss VC
         // tell follower list screen the new user

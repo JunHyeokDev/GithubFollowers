@@ -44,7 +44,7 @@ class GFUserInfoHeaderVC: UIViewController {
         bioLabel.text = user.bio ?? "아직 자기소개를 안썼어요.."
         bioLabel.numberOfLines = 3
         
-        locationImageView.image = UIImage(systemName: SFSymbols.location)
+        locationImageView.image = SFSymbols.location
         locationImageView.tintColor = .secondaryLabel
     }
     
@@ -58,12 +58,7 @@ class GFUserInfoHeaderVC: UIViewController {
     }
     
     func addSubview() {
-        view.addSubview(avatarImageView)
-        view.addSubview(usernameLabel)
-        view.addSubview(nameLabel)
-        view.addSubview(locationImageView)
-        view.addSubview(locationLabel)
-        view.addSubview(bioLabel)
+        view.addSubViews(avatarImageView,usernameLabel,nameLabel,locationImageView,locationLabel,bioLabel)
     }
     
     func layoutUI() {

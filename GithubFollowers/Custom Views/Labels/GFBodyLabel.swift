@@ -8,7 +8,7 @@
 import UIKit
 
 class GFBodyLabel: UILabel {
-
+    // MARK: - Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -27,6 +27,7 @@ class GFBodyLabel: UILabel {
     private func configure() {
         textColor = .secondaryLabel // pretty gray color
         font = UIFont.preferredFont(forTextStyle: .body)
+        adjustsFontForContentSizeCategory = true
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.75
         lineBreakMode = .byWordWrapping //
