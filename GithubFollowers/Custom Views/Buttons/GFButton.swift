@@ -9,18 +9,16 @@ import UIKit
 
 class GFButton: UIButton {
 
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         // We want to customize the UIButton, That's why we do this. Custom code goes here
         configure()
     }
     
-    init(backgroundColor: UIColor, title: String) {
-        super.init(frame: .zero)
+    convenience init(backgroundColor: UIColor, title: String) {
+        self.init(frame: .zero)
         self.backgroundColor = backgroundColor
         self.setTitle(title, for: .normal)
-        configure()
     }
     
     
