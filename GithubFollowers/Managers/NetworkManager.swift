@@ -74,6 +74,7 @@ class NetworkManager {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
+                decoder.dateDecodingStrategy = .iso8601 // Standard!
                 let user = try decoder.decode(User.self, from: data) // [Follower].self ??
                 completed(.success(user)) // Good to go
             } catch {
@@ -82,5 +83,38 @@ class NetworkManager {
             }
         }
         task.resume() // This is what really makes the netwroking job
+    }
+    
+    func donwloadImage(from url: String, completed: @escaping (UIImage?) -> Void ) {
+        
+        let cacheKey = NSString(string: url)
+        
+        if let image = cache.object(forKey: cacheKey) {
+            completed(image)
+            return
+        }
+        
+        guard let url = URL(string: url) else {
+            completed(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self]  data, reponse, error in
+            
+            guard let self = self,
+                    let data = data,
+                  let response = reponse as? HTTPURLResponse, response.statusCode == 200,
+                  let image = UIImage(data: data) else {
+                completed(nil)
+                return
+            }
+            
+            self.cache.setObject(image, forKey: cacheKey)
+            DispatchQueue.main.async {
+                completed(image)
+            }
+        }
+        
+        task.resume()
     }
 }
