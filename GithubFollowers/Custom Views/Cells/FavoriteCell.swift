@@ -25,12 +25,16 @@ class FavoriteCell: UITableViewCell {
     // MARK: - Set UI
     func set(favorite: Follower) {
         usernameLabel.text = favorite.login
-        avatarImageView.downloadImage(from: favorite.avatarUrl)
+        NetworkManager.shared.donwloadImage(from: favorite.avatarUrl) { [weak self] image in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.avatarImageView.image = image
+            }
+        }
     }
     // MARK: - UI Configure
     private func configure() {
-        addSubview(avatarImageView)
-        addSubview(usernameLabel)
+        addSubViews(avatarImageView,usernameLabel)
         
         accessoryType = .disclosureIndicator // This is tappable, and you might want it
         let padding : CGFloat = 12

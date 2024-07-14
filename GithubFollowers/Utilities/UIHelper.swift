@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Enum or Struct?
 struct UIHelper {
     
     static func createThreeColumFlowLayout(in view: UIView) -> UICollectionViewFlowLayout {
