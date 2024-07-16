@@ -41,7 +41,6 @@ class GFTextField: UITextField {
     }
 }
 
-
 extension SearchVC : UITextFieldDelegate {
     
 }
