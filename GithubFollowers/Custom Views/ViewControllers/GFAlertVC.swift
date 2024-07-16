@@ -42,9 +42,7 @@ class GFAlertVC: UIViewController {
         configureActionButton()
         configureBodyLabel()
     }
-    
-    
-    
+
     // MARK: - UI Configure
     func configureContainerView() {
         NSLayoutConstraint.activate([

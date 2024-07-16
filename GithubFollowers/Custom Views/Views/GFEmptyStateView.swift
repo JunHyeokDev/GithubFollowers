@@ -41,7 +41,6 @@ class GFEmptyStateView: UIView {
         messageLabelCenterYConstraint.isActive = true
         
         NSLayoutConstraint.activate([
-//            messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -150),
             messageLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40),
             messageLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40),
             messageLabel.heightAnchor.constraint(equalToConstant: 200),
