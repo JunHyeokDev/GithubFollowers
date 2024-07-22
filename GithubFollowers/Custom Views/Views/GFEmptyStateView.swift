@@ -52,5 +52,4 @@ class GFEmptyStateView: UIView {
             
         ])
     }
-
 }

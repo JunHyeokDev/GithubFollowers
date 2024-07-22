@@ -40,7 +40,3 @@ class GFTextField: UITextField {
         placeholder = "누구를 검색할까요???"
     }
 }
-
-extension SearchVC : UITextFieldDelegate {
-    
-}
