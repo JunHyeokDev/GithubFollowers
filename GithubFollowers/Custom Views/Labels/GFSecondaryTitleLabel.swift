@@ -8,7 +8,7 @@
 import UIKit
 
 class GFSecondaryTitleLabel: UILabel {
-
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

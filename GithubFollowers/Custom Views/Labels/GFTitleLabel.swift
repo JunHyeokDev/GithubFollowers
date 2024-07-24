@@ -9,7 +9,7 @@ import UIKit
 
 class GFTitleLabel: UILabel {
     
-    // MARK: - Life Cycle
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

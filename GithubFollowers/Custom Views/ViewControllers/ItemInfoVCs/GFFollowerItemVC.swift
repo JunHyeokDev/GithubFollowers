@@ -16,11 +16,11 @@ class GFFollowerItemVC: GFItemInfoVC {
     
     weak var delegate : GFFollowerItemVCDelegate!
     
+    // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         configureItems()
     }
-    
     init(user: User, delegate : GFFollowerItemVCDelegate) {
         super.init(user: user)
         self.delegate = delegate
