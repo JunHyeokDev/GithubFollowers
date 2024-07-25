@@ -70,7 +70,7 @@ class SearchVC: UIViewController {
     }
     
     func configureTextField() {
-        usernameTextField.delegate = self
+//        usernameTextField.delegate = self
         
         NSLayoutConstraint.activate([
             usernameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),

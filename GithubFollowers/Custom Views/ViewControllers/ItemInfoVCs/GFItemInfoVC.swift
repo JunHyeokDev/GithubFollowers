@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - GFItemInfoVC
 class GFItemInfoVC: UIViewController {
-    
+    // MARK: - Properties
     let stackView = UIStackView()
     let itemInfoViewOne = GFItemInfoView()
     let itemInfoViewTwo = GFItemInfoView()
@@ -17,6 +17,7 @@ class GFItemInfoVC: UIViewController {
     
     var user : User!
 
+    // MARK: - Init
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBackgroundView()
