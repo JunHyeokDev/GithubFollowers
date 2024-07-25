@@ -12,6 +12,7 @@ protocol GFFollowerItemVCDelegate : AnyObject {
     func didTapGetFollowers(for user : User)
 }
 
+// MARK: - GFFollowerItemVC
 class GFFollowerItemVC: GFItemInfoVC {
     
     weak var delegate : GFFollowerItemVCDelegate!

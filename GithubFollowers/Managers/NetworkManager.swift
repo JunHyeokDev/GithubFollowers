@@ -8,6 +8,7 @@
 import UIKit
 
 class NetworkManager {
+    // MARK: - Singleton
     static let shared = NetworkManager()
     private let _baseURL = "https://api.github.com"
     private let _followersPerPage = "100"
